@@ -1,0 +1,60 @@
+{
+  "customer_id": "dp-logistics",
+  "customer_name": "DP Logistics",
+  "description": "Third-party logistics provider specializing in warehouse management, tracking, and fleet operations.",
+
+  "brand_metadata": {
+    "domain": "dplogistics.com",
+    "email_suffix": "@dplogistics.com",
+    "code_prefixes": ["dp_", "dpl_", "logi_"],
+    "internal_projects": ["DPTrack", "FleetEye", "DPWarehouse", "LogiFlow"]
+  },
+
+  "keywords": [
+    "DPLogistics", "DPTrack", "FleetEye", "DPWarehouse", "LogiFlow",
+    "@dplogistics.com", "api.dplogistics.com", "vpn.dplogistics.com",
+    "dplogistics_key", "dplogistics_secret", "dplogistics_internal"
+  ],
+
+  "regex_patterns": [
+    {
+      "name": "internal_email",
+      "pattern": "[a-zA-Z0-9._%+-]+@dplogistics\\.com",
+      "description": "Internal employee emails",
+      "severity": "medium",
+      "enabled": true
+    },
+    {
+      "name": "fleet_id",
+      "pattern": "\\bDPF-[0-9A-Z]{5}\\b",
+      "description": "Fleet asset identifiers",
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "name": "ssl_private_key",
+      "pattern": "-----BEGIN (RSA|EC) PRIVATE KEY-----",
+      "description": "Private key exposure",
+      "severity": "critical",
+      "enabled": true
+    }
+  ],
+
+  "scan_settings": {
+    "context_lines": 100,
+    "max_results_per_keyword": 5,
+    "search_types": ["code"],
+    "exclude_repos": ["dp-public", "logistics-demo"]
+  },
+
+  "ai_settings": {
+    "enabled": true,
+    "model": "gemini-1.5-flash",
+    "batch_size": 4
+  },
+
+  "api_credentials": {
+    "github_token_env": "GITHUB TOKEN",
+    "gemini_key_env": "GEMINI TOKEN"
+  }
+}

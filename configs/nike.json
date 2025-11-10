@@ -1,0 +1,59 @@
+{
+  "customer_id": "nike",
+  "customer_name": "Nike Inc.",
+  "description": "Global sportswear brand with digital commerce, design, and IoT integration systems.",
+
+  "brand_metadata": {
+    "domain": "nike.com",
+    "email_suffix": "@nike.com",
+    "code_prefixes": ["nike_", "nk_", "justdoit_"],
+    "internal_projects": ["NikeApp", "NikeCloud", "JustDoIT", "NikeConnect"]
+  },
+
+  "keywords": [
+    "Nike", "NikeCloud", "JustDoIT", "NikeApp", "NikeConnect",
+    "@nike.com", "api.nike.com", "vpn.nike.com", "nike_key", "nike_secret"
+  ],
+
+  "regex_patterns": [
+    {
+      "name": "internal_email",
+      "pattern": "[a-zA-Z0-9._%+-]+@nike\\.com",
+      "description": "Nike corporate email identifiers",
+      "severity": "medium",
+      "enabled": true
+    },
+    {
+      "name": "design_repo_leak",
+      "pattern": "(?i)(nike|justdoit)[-_]design",
+      "description": "Design or prototype code exposure",
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "name": "azure_secret",
+      "pattern": "(?i)(azure[_-]?key|client[_-]?secret)\\s*[:=]\\s*['\"]?[A-Za-z0-9]{20,}['\"]?",
+      "description": "Azure app secrets",
+      "severity": "critical",
+      "enabled": true
+    }
+  ],
+
+  "scan_settings": {
+    "context_lines": 120,
+    "max_results_per_keyword": 5,
+    "search_types": ["code"],
+    "exclude_repos": ["nike-public", "nike-demo"]
+  },
+
+  "ai_settings": {
+    "enabled": true,
+    "model": "gemini-1.5-flash",
+    "batch_size": 5
+  },
+
+  "api_credentials": {
+    "github_token_env": "GITHUB TOKEN",
+    "gemini_key_env": "GEMINI TOKEN"
+  }
+}

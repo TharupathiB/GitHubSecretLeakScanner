@@ -1,0 +1,59 @@
+{
+  "customer_id": "espn-sports",
+  "customer_name": "ESPN Sports",
+  "description": "Global sports media and streaming platform offering live content and sports analytics.",
+
+  "brand_metadata": {
+    "domain": "espn.com",
+    "email_suffix": "@espn.com",
+    "code_prefixes": ["espn_", "sports_", "esp_"],
+    "internal_projects": ["ESPNStream", "SportsData", "ESPNCore", "ScoreHub"]
+  },
+
+  "keywords": [
+    "ESPN", "ESPNStream", "SportsData", "ScoreHub", "ESPNCore",
+    "@espn.com", "api.espn.com", "cdn.espn.com", "espn_key", "espn_secret"
+  ],
+
+  "regex_patterns": [
+    {
+      "name": "internal_email",
+      "pattern": "[a-zA-Z0-9._%+-]+@espn\\.com",
+      "description": "Internal ESPN emails",
+      "severity": "medium",
+      "enabled": true
+    },
+    {
+      "name": "stream_api_token",
+      "pattern": "(?i)(stream[_-]?token)\\s*[:=]\\s*['\"]?[A-Za-z0-9]{20,}['\"]?",
+      "description": "Streaming API access tokens",
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "name": "cdn_key",
+      "pattern": "cdn-[A-Za-z0-9]{12,}",
+      "description": "CDN service credentials",
+      "severity": "high",
+      "enabled": true
+    }
+  ],
+
+  "scan_settings": {
+    "context_lines": 100,
+    "max_results_per_keyword": 5,
+    "search_types": ["code"],
+    "exclude_repos": ["espn-public", "espn-demo"]
+  },
+
+  "ai_settings": {
+    "enabled": true,
+    "model": "gemini-1.5-flash",
+    "batch_size": 5
+  },
+
+  "api_credentials": {
+    "github_token_env": "GITHUB TOKEN",
+    "gemini_key_env": "GEMINI TOKEN"
+  }
+}

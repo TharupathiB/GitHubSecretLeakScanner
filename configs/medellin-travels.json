@@ -1,0 +1,60 @@
+{
+  "customer_id": "medellin-travels",
+  "customer_name": "Medellin Travels",
+  "description": "Travel agency specializing in business and tourist visa services across 35+ countries.",
+
+  "brand_metadata": {
+    "domain": "medellintravels.lk",
+    "email_suffix": "@medellintravels.lk",
+    "code_prefixes": ["med_", "mt_", "mdl_"],
+    "internal_projects": ["VisaFlow", "TravelCore", "MedPortal", "FlightHub"]
+  },
+
+  "keywords": [
+    "MedellinTravels", "VisaFlow", "TravelCore", "MedPortal", "FlightHub",
+    "@medellintravels.lk", "api.medellintravels.lk", "vpn.medellintravels.lk",
+    "medellin_key", "medellin_secret", "medellin_token"
+  ],
+
+  "regex_patterns": [
+    {
+      "name": "internal_email",
+      "pattern": "[a-zA-Z0-9._%+-]+@medellintravels\\.lk",
+      "description": "Internal company email identifiers",
+      "severity": "medium",
+      "enabled": true
+    },
+    {
+      "name": "passport_data",
+      "pattern": "(?i)(passport[_-]?no|passportnumber)\\s*[:=]\\s*['\"]?[A-Z0-9]{6,}['\"]?",
+      "description": "Possible passport number in logs",
+      "severity": "critical",
+      "enabled": true
+    },
+    {
+      "name": "booking_ref",
+      "pattern": "\\bMT-[0-9]{6}\\b",
+      "description": "Internal booking reference patterns",
+      "severity": "high",
+      "enabled": true
+    }
+  ],
+
+  "scan_settings": {
+    "context_lines": 100,
+    "max_results_per_keyword": 5,
+    "search_types": ["code"],
+    "exclude_repos": ["mt-public", "medellin-demo"]
+  },
+
+  "ai_settings": {
+    "enabled": true,
+    "model": "gemini-1.5-flash",
+    "batch_size": 5
+  },
+
+  "api_credentials": {
+    "github_token_env": "GITHUB TOKEN",
+    "gemini_key_env": "GEMINI TOKEN"
+  }
+}
