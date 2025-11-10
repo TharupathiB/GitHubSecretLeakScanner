@@ -1,0 +1,110 @@
+{
+  "customer_id": "acme-123",
+  "customer_name": "Acme",
+  "description": "Polythene manufacturing company with proprietary ERP systems",
+
+  "brand_metadata": {
+    "domain": "acmepolythene.com",
+    "email_suffix": "@acmepolythene.com",
+    "code_prefixes": ["acme_", "acmepoly_", "aptc_"],
+    "internal_projects": ["AcmeERP", "AcmeFactory", "TapeTrack", "PolySys"]
+  },
+  
+  "keywords": [
+    "AcmePoly",
+    "AcmeERP",
+    "AcmeFactory",
+    "AcmeInternal",
+    "acme_key",
+    "acme_secret",
+    "acme_token",
+    "acme_credentials",
+    "acme_auth",
+    "acme_config",
+    "acmepoly.com",
+    "@acmepoly.com",
+    "git.acmepoly.com",
+    "vpn.acmepoly.com",
+    "acme_s3",
+    "acme_lambda",
+    "acme_dev",
+    "acme_prod",
+    "Acme-poly",
+    "Acmepoly",
+    "acme-demo",
+    "acme-lanka"
+  ],
+
+
+  "regex_patterns": [
+    {
+      "name": "github_token",
+      "pattern": "ghp_[a-zA-Z0-9]{36}",
+      "description": "GitHub Personal Access Token",
+      "severity": "critical",
+      "enabled": true
+    },
+    {
+      "name": "api_key",
+      "pattern": "(?i)(api[_-]?key|apikey)\\s*[:=]\\s*['\"]?[a-zA-Z0-9]{20,}['\"]?",
+      "description": "Generic API Key",
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "name": "aws_key",
+      "pattern": "AKIA[0-9A-Z]{16}",
+      "description": "AWS Access Key",
+      "severity": "critical",
+      "enabled": true
+    },
+    {
+      "name": "email_pattern",
+      "pattern": "[a-zA-Z0-9._%+-]+@acmepoly\\.com",
+      "description": "Internal company emails",
+      "severity": "medium",
+      "enabled": true
+    },
+    {
+      "name": "database_connection",
+      "pattern": "(?i)(mongodb|mysql|postgres)://[^\\s]+",
+      "description": "Database connection strings",
+      "severity": "high",
+      "enabled": false
+    }
+  ],
+  
+  "scan_settings": {
+    "context_lines": 100,
+    "max_results_per_keyword": 5,
+    "search_types": [
+      "code",
+      "issues",
+      "commits",
+      "repos",
+      "topics"
+    ],
+    "exclude_repos": [
+      "acme-public-docs",
+      "acme-marketing-site"
+    ]
+  },
+
+  "ai_settings": {
+    "enabled": true,
+    "model": "gemini-1.5-flash",
+    "batch_size": 5
+  },
+  
+  "api_credentials": {
+    "github_token_env": "GITHUB TOKEN",
+    "gemini_key_env": "GEMINI TOKEN"
+  },
+  
+  "notification_settings": {
+    "enabled": false,
+    "email": "security@acmepoly.com",
+    "slack_webhook": "",
+    "alert_on_severity": ["critical", "high"]
+  }
+}
